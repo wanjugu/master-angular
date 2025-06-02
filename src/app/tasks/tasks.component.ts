@@ -1,4 +1,4 @@
-import { Component, output, Input } from '@angular/core';
+import { Component, output, Input, Output, EventEmitter } from '@angular/core';
 
 import { TaskComponent } from './task/task.component';
 
@@ -12,6 +12,8 @@ import { TaskComponent } from './task/task.component';
 export class TasksComponent {
   @Input({ required: true }) userId!: string; // Input property for user ID
   @Input({ required: true }) name!: string; // Input property for task ID
+ 
+
 
   tasks = [
     {
@@ -43,4 +45,8 @@ export class TasksComponent {
     return this.tasks.filter((task) => task.userId === this.userId);
   }
   
+  onCompleteTask(id:string){
+    this.tasks = this.tasks.filter((task) => task.id !== id); // Remove the completed task from the list
+    console.log(`Task with ID ${id} completed and removed from the list.`);
+  }
 }

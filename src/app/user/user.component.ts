@@ -1,11 +1,6 @@
 import { Component, computed, signal,Input, input, Output,EventEmitter,output } from '@angular/core';
 
-
-interface User {
-  id: string;
-  name: string;
-  avatar: string;
-}
+import { type User } from './user.model'; // Import the User model
 
 @Component({
   selector: 'app-user',
@@ -19,6 +14,7 @@ export class UserComponent {
 
 
   @Input({ required: true }) user!: User; // Input property for user ID
+  @Input({ required: true }) selected!: boolean; // Input property for selected user ID
   select = output<string>(); // Output event emitter for user selection
 
   // avatar = input.required<String>();

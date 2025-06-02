@@ -14,8 +14,8 @@ import { Component, computed, signal,Input } from '@angular/core';
 
 export class UserComponent {
 
-  @Input() avatar!:String;
-  @Input() name!:String;
+  @Input() avatar!: String;
+  @Input() name!: String;
 
 
 

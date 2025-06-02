@@ -4,7 +4,7 @@ import { HeaderComponent } from './header/header.component';
 
 import { UserComponent } from './user/user.component';  
 
-import { TaskComponent } from './task/task.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 import { DUMMY_USERS } from './dummyusers';
 
@@ -12,7 +12,7 @@ import { DUMMY_USERS } from './dummyusers';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, UserComponent, TaskComponent],
+  imports: [HeaderComponent, UserComponent, TasksComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

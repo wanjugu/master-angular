@@ -10,9 +10,9 @@
     }
   </ul>
   <div>   
-     LIST OF TASKS
+
      @if(selectedUser){
-         <app-task [name]="selectedUser.name"></app-task>
+         <app-tasks [userId]="selectedUser.id" [name]="selectedUser.name"></app-tasks>
      }
    
 </div>

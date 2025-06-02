@@ -1,4 +1,4 @@
-import { Component, computed, signal,Input } from '@angular/core';
+import { Component, computed, signal,Input, input } from '@angular/core';
 
 // import {DUMMY_USERS} from '../dummyusers'; // Importing the dummy users data
 
@@ -14,17 +14,20 @@ import { Component, computed, signal,Input } from '@angular/core';
 
 export class UserComponent {
 
-  @Input() avatar!: String;
-  @Input() name!: String;
+  // @Input({required:true}) avatar!: String;
+  // @Input({required:true}) name!: String;
+
+  avatar = input.required<String>();
+  name = input.required<String>();
 
 
 
   public get imagePath() { 
-  return 'assets/users/' + this.avatar; 
+  return 'assets/users/' + this.avatar(); 
   }
 
   public onSelectUser() {
-    console.log('Active user::' + this.name); // Log the selected user to the console
+    console.log('Active user::' + this.name()); // Log the selected user to the console
 
   }
 

@@ -1,4 +1,4 @@
-import { Component, computed, signal,Input, input } from '@angular/core';
+import { Component, computed, signal,Input, input, Output,EventEmitter,output } from '@angular/core';
 
 // import {DUMMY_USERS} from '../dummyusers'; // Importing the dummy users data
 
@@ -16,18 +16,21 @@ export class UserComponent {
 
   // @Input({required:true}) avatar!: String;
   // @Input({required:true}) name!: String;
+  @Input({ required: true }) id!: string; // Input property for user ID
+  // @Output() select = new EventEmitter()
+  select = output<string>(); // Output event emitter for user selection
 
   avatar = input.required<String>();
   name = input.required<String>();
+  imagePath = computed(() => 'assets/users/' + this.avatar()); // Computed property to get the image path dynamically
 
 
 
-  public get imagePath() { 
-  return 'assets/users/' + this.avatar(); 
-  }
+
+
 
   public onSelectUser() {
-    console.log('Active user::' + this.name()); // Log the selected user to the console
+    this.select.emit(this.id); // Emit the select event when the user is selected
 
   }
 

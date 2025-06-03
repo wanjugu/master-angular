@@ -2,12 +2,14 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { TasksComponent } from '../tasks.component';
 
+import { DatePipe } from '@angular/common'; // Import Date for date formatting
+
 import { type Task } from './task.model';
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [TasksComponent],
+  imports: [TasksComponent,DatePipe],
   templateUrl: './task.component.html',
   styleUrl: './task.component.css',
 })

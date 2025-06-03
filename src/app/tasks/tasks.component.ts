@@ -2,10 +2,14 @@ import { Component, output, Input, Output, EventEmitter } from '@angular/core';
 
 import { TaskComponent } from './task/task.component';
 
+import { NewTaskComponent } from './new-task/new-task.component'; // Import the NewTaskComponent
+
+import { type NewTask } from './task/task.model'; // Import the Task model
+
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [TaskComponent],
+  imports: [TaskComponent,NewTaskComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
@@ -14,7 +18,8 @@ export class TasksComponent {
   @Input({ required: true }) name!: string; // Input property for task ID
  
 
-
+  isAddingTask = false; // Flag to track if the user is adding a new task
+  
   tasks = [
     {
       id: 't1',
@@ -49,4 +54,28 @@ export class TasksComponent {
     this.tasks = this.tasks.filter((task) => task.id !== id); // Remove the completed task from the list
     console.log(`Task with ID ${id} completed and removed from the list.`);
   }
+
+  onStartAddTask() {
+    this.isAddingTask = true; // Set the flag to true when the user starts adding a new task
+  }
+
+  public onCancelAddTask() {
+     this.isAddingTask = false;
+  }
+
+  public onAddTask(task: NewTask) {
+
+    this.tasks.unshift({ //or push to add at the end
+      id:  Math.random().toString(),
+      userId: this.userId,
+      title: task.title,
+      summary: task.summary,
+      dueDate: new Date(task.dueDate).toISOString().split('T')[0] // Format the due date to 'YYYY-MM-DD'
+      
+    });
+   
+    this.isAddingTask = false; // Reset the flag after adding the task
+    console.log(`New task added: ${task.title}`);
+  }
+  
 }

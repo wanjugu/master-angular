@@ -1,6 +1,7 @@
-import { bootstrapApplication } from '@angular/platform-browser';
+import { platformBrowserDynamic  } from "@angular/platform-browser-dynamic";    
 
-import { AppComponent } from './app/app.component';
+import { AppModule } from "./app/app.module"; // Import the root module of the application
 
-
-bootstrapApplication(AppComponent).catch((err) => console.error(err));
+platformBrowserDynamic()
+  .bootstrapModule(AppModule) // Bootstrap the application using the root module
+  .catch((err) => console.error(err)); // Catch and log any errors during bootstrap

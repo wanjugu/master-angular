@@ -1,17 +1,10 @@
 import { Component, output, Input, Output, EventEmitter } from '@angular/core';
 
-import { TaskComponent } from './task/task.component';
-
-import { NewTaskComponent } from './new-task/new-task.component'; // Import the NewTaskComponent
-
-import { type NewTask } from './task/task.model'; // Import the Task model
 
 import { TasksService } from './task.service';
 
 @Component({
   selector: 'app-tasks',
-  standalone: true,
-  imports: [TaskComponent,NewTaskComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
@@ -25,8 +18,6 @@ export class TasksComponent {
 
   isAddingTask = false; // Flag to track if the user is adding a new task
   
-
-
   get SelectedUserTasks() {
     return this.taskService.getUserTasks(this.userId); 
   }
@@ -41,9 +32,4 @@ export class TasksComponent {
      this.isAddingTask = false;
   }
 
-  public onAddTask(task: NewTask) {
-
-    this.isAddingTask = false; // Reset the flag after adding the task
-   
-  }
 }
